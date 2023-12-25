@@ -4,9 +4,10 @@ import axios from 'axios';
 
 function List() {
   const [initialFruits, setinitialFruits] = useState([]);
+  const [fruitInput,setFruitInput] = useState("all");
 
   useEffect(()=>{
-    axios.get(`https://www.fruityvice.com/api/fruit/all`)
+    axios.get(`https://www.fruityvice.com/api/fruit/${fruitInput}`)
     .then(response =>  setinitialFruits(response.data)  )
     .catch(error => console.log(error));
   },[fruitInput])
@@ -43,7 +44,8 @@ function List() {
     setFilteredFruits(OutputFruitList);
   };
 
-  const [attributSLBI, SetAttributSLBI]= useState({sortType:"by-calories",value:10}); // SLBI is short for the function sortListByInput, and this hook is used as attribut holder
+
+  const [attributSLBI, SetAttributSLBI]= useState({sortType:"by-calories",value:10}); // SLBI is short for the function sortListByInput, and this hook is used as an attribut holder
   const sortListByInput=(method,value)=>{
     let OutputFruitList;
     if(listingMethod){
