@@ -4,13 +4,12 @@ import axios from 'axios';
 
 function List() {
   const [initialFruits, setinitialFruits] = useState([]);
-  const [fruitInput,setFruitInput] = useState("all");
 
   useEffect(()=>{
-    axios.get(`https://www.fruityvice.com/api/fruit/${fruitInput}`)
+    axios.get(`https://www.fruityvice.com/api/fruit/all`)
     .then(response =>  setinitialFruits(response.data)  )
     .catch(error => console.log(error));
-  },[fruitInput])
+  },[])
 
   const [filteredFruits, setFilteredFruits] = useState(initialFruits);
   const [selectedFruit, setselectedFruit] = useState(null);
@@ -93,7 +92,7 @@ function List() {
       </ul>      
       
       
-      {selectedFruit && !listingMethod && (
+      {selectedFruit && (
         <div>
           <p>selected Fruit: {selectedFruit.name}</p>
           <p>Calories: {selectedFruit.nutritions.calories}</p>
