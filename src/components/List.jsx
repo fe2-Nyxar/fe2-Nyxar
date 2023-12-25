@@ -44,7 +44,7 @@ function List() {
     setFilteredFruits(OutputFruitList);
   };
 
-  const [attributSLBI, SetAttributSLBI]= useState({sortType:"by-calories",value:10}); // SLBI is short for the function sortListByInput, and this hook is used as attribut holder
+  const [attributSLBI, SetAttributSLBI]= useState({sortType:"by-calories",value:10}); // SLBI is short for the function sortListByInput, and this hook is used as an attribut holder
   const sortListByInput=(method,value)=>{
     let OutputFruitList;
     if(listingMethod){
