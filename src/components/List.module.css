@@ -27,5 +27,6 @@ select:focus,
     color: hsla(258, 74%, 65%, 0.742);
     opacity: 0.5;
     transition: opacity 0.11s ease-in;
-    
+        cursor: pointer;
+
 }

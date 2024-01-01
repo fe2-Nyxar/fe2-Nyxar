@@ -8,21 +8,24 @@ function List() {
   const [filteredFruits, setFilteredFruits] = useState(initialFruits);
   const [selectedFruit, setselectedFruit] = useState(null);
   const [listingMethod,setListingMethod] = useState(false);
+  const [loadingApi,setLoadingApi] = useState(false);
 
   
   useEffect(()=>{
     axios.get(`https://www.fruityvice.com/api/fruit/all`)
-    .then(response => {setinitialFruits(response.data)})
-    .catch(console.log("couldn't find the data"));
+    .then(response => {setinitialFruits(response.data); console.log(response.data)})
+    .catch(error=>console.error("couldn't find the data", error))
+    .finally(()=>setLoadingApi(true));
 
   },[])
 
 
 
-  useEffect(()=>{
+useEffect(()=>{
     sortListBySelect();
-    console.log("rendered!")
-},[])
+  
+  console.log("rendered!")
+},[loadingApi])
 
 
 
@@ -30,7 +33,7 @@ function List() {
   const sortListBySelect = (method= "by-alphabet") => {
     console.log("I'm inside the sortListBySelect function")
     let OutputFruitList;
-    if(!listingMethod){
+    if(!listingMethod && initialFruits.length !==0){
       switch (method) {
         case "by-calories":
           OutputFruitList = Object.values(initialFruits).sort((a, b) => a.nutritions.calories - b.nutritions.calories).reverse();
@@ -40,7 +43,6 @@ function List() {
             break;
           case 'by-alphabet':
             OutputFruitList = Object.values(initialFruits).sort((a, b) => a.name.localeCompare(b.name));
-            console.log(OutputFruitList)
             break;
           default:
             break;
@@ -63,6 +65,7 @@ function List() {
     }
     setFilteredFruits(OutputFruitList)
   }
+if(loadingApi) {
 
   return (
     <>
@@ -107,6 +110,6 @@ function List() {
       </ul>      
       </>
   );
+  }
 }
-
 export default List;
