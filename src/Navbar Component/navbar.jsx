@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import "./NavBar.modules.css";
+import navStyles from "./NavBar.module.css";
 function Navbar() {
   const [themeMode, setThemeMode] = useState(true);
 
-  return <div id="navbar">navbar</div>;
+  return (
+    <nav id={navStyles.navbar__container}>
+      <ul id={navStyles.header__menu}>
+        <li>Fruits</li>
+        <li>About</li>
+        <li id={navStyles.theme}>Theme</li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Navbar;

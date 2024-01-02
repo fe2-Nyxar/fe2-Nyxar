@@ -18,7 +18,6 @@ function List() {
       .get(`https://www.fruityvice.com/api/fruit/all`)
       .then((response) => {
         setinitialFruits(response.data);
-        console.log(response.data);
       })
       .catch((error) => console.error("couldn't find the data", error))
       .finally(() => setLoadingApi(true));
@@ -26,7 +25,6 @@ function List() {
 
   useEffect(() => {
     sortListBySelect();
-
     console.log("rendered!");
   }, [loadingApi]);
 
@@ -77,79 +75,83 @@ function List() {
 
   if (loadingApi) {
     return (
-      <>
-        <button
-          onClick={(e) => {
-            setListingMethod((prevValue) => !prevValue);
-          }}
-        >
-          switch listing Method
-        </button>
-        <br />
-        <br />
-        {listingMethod && (
-          <div>
-            <select
-              onChange={(e) =>
-                SetAttributSLBI({ ...attributSLBI, sortType: e.target.value })
-              }
-            >
-              <option value={"by-alphabet"}>alphabet</option>
-              <option value={"by-calories"}>calorie</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Enter your fruit"
-              onChange={(e) =>
-                SetAttributSLBI({ ...attributSLBI, value: e.target.value })
-              }
-            />
-            <br />
-            <br />
-            <button
-              onClick={() =>
-                sortListByInput(attributSLBI.sortType, attributSLBI.value)
-              }
-            >
-              show
-            </button>
-          </div>
-        )}
+      <div id={styles.list__container}>
+        <div className={styles.subcontainer}>
+          <button
+            className={styles.listbuttons}
+            onClick={(e) => {
+              setListingMethod((prevValue) => !prevValue);
+            }}
+          >
+            switch
+          </button>
 
-        {!listingMethod && (
-          <span>
-            {" "}
-            <h3>order by:</h3>
-            <select onChange={(e) => sortListBySelect(e.target.value)}>
-              <option value={"by-alphabet"}>alphabet</option>
-              <option value={"by-id"}>Id</option>
-              <option value={"by-calories"}>Calories</option>
-            </select>
-          </span>
-        )}
+          {!listingMethod && (
+            <span>
+              <h3>order by:</h3>
+              <select onChange={(e) => sortListBySelect(e.target.value)}>
+                <option value={"by-alphabet"}>alphabet</option>
+                <option value={"by-id"}>Id</option>
+                <option value={"by-calories"}>Calories</option>
+              </select>
+            </span>
+          )}
 
-        <br />
-        <ul>
-          {filteredFruits &&
-            filteredFruits.map((fruit) => (
-              <li
-                className={styles.Fruitsbracket}
-                key={fruit.id}
-                onClick={() => setselectedFruit(fruit)}
+          {listingMethod && (
+            <div>
+              <select
+                onChange={(e) =>
+                  SetAttributSLBI({ ...attributSLBI, sortType: e.target.value })
+                }
               >
-                {fruit.name}
-              </li>
-            ))}
-
-          <br />
-          {selectedFruit && (
-            <div className={styles.FruitSelectedDetails}>
-              <p>selected Fruit: {selectedFruit.name}</p>
-              <p>Calories: {selectedFruit.nutritions.calories}</p>
+                <option value={"by-alphabet"}>alphabet</option>
+                <option value={"by-calories"}>calorie</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Enter your fruit"
+                onChange={(e) =>
+                  SetAttributSLBI({ ...attributSLBI, value: e.target.value })
+                }
+              />
+              <br />
+              <br />
+              <button
+                className={styles.listbuttons}
+                onClick={() =>
+                  sortListByInput(attributSLBI.sortType, attributSLBI.value)
+                }
+              >
+                show
+              </button>
             </div>
           )}
-        </ul>
-      </>
+        </div>
+
+        <br />
+        <div className={styles.subcontainer}>
+          <ul>
+            {filteredFruits &&
+              filteredFruits.map((fruit) => (
+                <li
+                  className={styles.Fruitsbracket}
+                  key={fruit.id}
+                  onClick={() => setselectedFruit(fruit)}
+                >
+                  {fruit.name}
+                </li>
+              ))}
+
+            <br />
+            {selectedFruit && (
+              <div className={styles.FruitSelectedDetails}>
+                <p>selected Fruit: {selectedFruit.name}</p>
+                <p>Calories: {selectedFruit.nutritions.calories}</p>
+              </div>
+            )}
+          </ul>
+        </div>
+      </div>
     );
   }
 }

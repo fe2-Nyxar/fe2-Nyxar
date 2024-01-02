@@ -5,7 +5,9 @@ import Navbar from "./Navbar Component/navbar";
 function App() {
   return (
     <>
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <List />
     </>
   );

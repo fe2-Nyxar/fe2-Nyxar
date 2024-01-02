@@ -1,0 +1,52 @@
+#navbar__container {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--navbar-backgroundcolor);
+    align-items: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.5rem;
+
+}
+
+#header__menu {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    gap: 3em;
+}
+
+#header__menu li{
+    color: #f9f9f9;
+    text-align: center;
+    transform: scale(1);
+    transition: color 0.3s, transform 0.3s;
+    
+}
+
+#header__menu li:hover {
+    color: var(--buttons-color);
+    transform: scale(1.05);
+
+
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: var(--navbar-backgroundcolor);
+        background-color: #ffffff;
+    }
+
+    a:hover {
+        color: #747bff;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
+}
