@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import propTypes from "prop-types";
 import styles from "./List.module.css";
 import axios from "axios";
 
-function List() {
+function List(props) {
   const [initialFruits, setinitialFruits] = useState([]);
   const [attributSLBI, SetAttributSLBI] = useState({
     sortType: "by-alphabet",
@@ -134,7 +135,7 @@ function List() {
             {filteredFruits &&
               filteredFruits.map((fruit) => (
                 <li
-                  className={styles.Fruitsbracket}
+                  className={`${styles.Fruitsbracket} ${props.Classes}`}
                   key={fruit.id}
                   onClick={() => setselectedFruit(fruit)}
                 >
@@ -144,7 +145,9 @@ function List() {
 
             <br />
             {selectedFruit && (
-              <div className={styles.FruitSelectedDetails}>
+              <div
+                className={`${styles.FruitSelectedDetails} ${props.Classes}`}
+              >
                 <p>selected Fruit: {selectedFruit.name}</p>
                 <p>Calories: {selectedFruit.nutritions.calories}</p>
               </div>
@@ -155,4 +158,9 @@ function List() {
     );
   }
 }
+
+List.propTypes = {
+  Classes: propTypes.string.isRequired,
+};
+
 export default List;

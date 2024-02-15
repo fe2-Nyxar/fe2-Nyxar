@@ -1,4 +1,4 @@
-#navbar__container {
+#navbar__container{
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -9,7 +9,8 @@
     align-items: center;
     padding-top: 1.25rem;
     padding-bottom: 1.5rem;
-
+    user-select: none;
+    
 }
 
 #header__menu {
@@ -36,7 +37,8 @@
 
 }
 
-@media (prefers-color-scheme: light) {
+
+/* @media (prefers-color-scheme: light) {
     :root {
         color: var(--navbar-backgroundcolor);
         background-color: #ffffff;
@@ -49,4 +51,4 @@
     button {
         background-color: #f9f9f9;
     }
-}
+} */

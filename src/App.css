@@ -4,24 +4,25 @@
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
   color-scheme: light dark;
-  background-color: var(--navbar-backgroundcolor);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  background-color: var(--navbar-backgroundcolor);
   /* Colors */
   --buttons-color: rgb(225, 29, 72);
   --navbar-backgroundcolor: rgb(7, 10, 18);
-  --indigo: rgb(79, 70, 229); 
+  --indigo: rgb(79, 70, 229);
 }
+
+
 
 *{
   margin: 0;
   line-height: calc(1em + 0.5em);
 }
 
- img,picture,video,canvas,svg,select,button, input::placeholder{
+ img,picture,video,canvas,svg, input::placeholder{
   display: block;
   max-width: 100%;
   user-select: none;
@@ -30,7 +31,9 @@
 select,button{
   all:unset;
   letter-spacing: -0.05em;
-
+  display: block;
+  max-width: 100%;
+  user-select: none;
 } 
 /* xs */
 @media (max-width: 475px){
